@@ -97,6 +97,20 @@ class SinglyLinkedList:
 
         return node
 
+    def insert(self, index, value):
+        if index < 0 or index > self.length:
+            return "Index Out Of Range"
+        if index == 0:
+            return self.unshift(value)
+        if index == self.length:
+            return self.push(value)
+        new_node = Node(value)
+        previous = self.get_index(index - 1)
+        next_node = self.get_index(index)
+        previous.nextnode = new_node
+        new_node.nextnode = next_node
+        self.length += 1
+
 
 linked_list = SinglyLinkedList()
 linked_list.push(1)
@@ -105,10 +119,11 @@ linked_list.push(3)
 linked_list.push(4)
 linked_list.push(5)
 # linked_list.pop()
-linked_list.shift()
+# linked_list.shift()
 linked_list.unshift(0)
 linked_list.unshift(-9)
-linked_list.set_index(4, "HII")
+# linked_list.set_index(4, "HII")
+linked_list.insert(4, "First")
 
 print(linked_list.print_LinkedList())
 # print(linked_list.get_index(0).value)
